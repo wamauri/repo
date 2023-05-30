@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap4 %}
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- <meta http-equiv="refresh" content="10"> -->
+        <title>{% block title %}Arquiterura | Cadastro de Usuário{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- Custom fonts for this template-->
+        <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static '/img/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static '/img/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static '/img/favicon-16x16.png' %}">
+        <!-- Custom styles for this template-->
+        <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/634401e457.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+        <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    </head>
+
+    <body class="bg-gradient-success">
+        <div class="container">
+            <!-- Outer Row -->
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-6 col-md-9">
+                    <div class="card o-hidden border-0 shadow-lg my-5">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Cadastro de Usuário</h1>
+                            </div>
+                            {% for message in messages %}
+                                <div class="container-fluid p-0">
+                                <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ message }}
+                                </div>
+                                </div>
+                            {% endfor %}
+                            <form method="POST" class="user"> {% csrf_token %}
+                                {{ form.errors }}
+                                {% bootstrap_field form.email placeholder="nome@exemplo.com" %}
+                                <div class="row">
+                                    <div class="col-6">
+                                        {% bootstrap_field form.first_name placeholder="João" %}
+                                    </div>
+                                    <div class="col-6">
+                                        {% bootstrap_field form.last_name placeholder="Pedro" %}
+                                    </div>
+                                </div>
+                                {% bootstrap_field form.password1 show_help=False %}
+                                {% bootstrap_field form.password2 show_help=False %}
+                                <button type="submit" class="btn btn-info btn-block text-uppercase text-decoration-none mt-4">Criar Conta</button>
+                                <div class="text-center mt-3">
+                                    <a class="small" href="{% url 'login' %}">Já tem uma Conta? Login!</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>                  
+    </body>
+</html>
