@@ -66,10 +66,14 @@ class TipoOrigemDados(models.Model):
 
 
 class Responsavel(models.Model):
-    GRAU_STATUS = (
+    GRAU = (
         ("1", "1"),
         ("2", "2"),
         ("3", "3"),
+    )
+    VALIDO = (
+        ("S", "S"),
+        ("N", "N"),
     )
     codigo = models.CharField(
         verbose_name="Código",
@@ -86,10 +90,30 @@ class Responsavel(models.Model):
     grau_status = models.CharField(
         verbose_name="Nome",
         max_length=255,
-        choices=GRAU_STATUS,
+        choices=GRAU,
         null=True,
-        blank=True,
-        unique=True
+        blank=True
+    )
+    valido = models.CharField(
+        verbose_name="Válido",
+        max_length=255,
+        choices=VALIDO,
+        null=True,
+        blank=True
+    )
+    data_update = models.DateTimeField(
+        verbose_name="Data Update",
+        auto_now_add=False,
+        auto_now=False,
+        null=True,
+        blank=True
+    )
+    usuario_update = models.DateTimeField(
+        verbose_name="Usuário Update",
+        auto_now_add=False,
+        auto_now=False,
+        null=True,
+        blank=True
     )
 
     class Meta:
