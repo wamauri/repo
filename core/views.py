@@ -49,7 +49,9 @@ def index(request):
 
 def repos(request):
     form = forms.RepoForm(request.POST or None)
+    registro_versoes_form = forms.RegistroDeVersoesForm(request.POST or None)
     repos = models.Repo.objects.all()
+    registro_versoes = models.RegistroDeVersoes.objects.all()
     context = {}
     user = request.user
 
@@ -60,10 +62,17 @@ def repos(request):
 
             return redirect("core:repos")
 
+    elif registro_versoes_form.is_valid():
+            registro_versoes_form.save()
+
+            return redirect("core:repos")
+
     else:
         form = forms.RepoForm(request.POST or None)
     
     context["form"] = form
+    context["registro_versoes_form"] = registro_versoes_form
+    context["registro_versoes"] = registro_versoes
     context["repos"] = repos
     context["user"] = user
 

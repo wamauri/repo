@@ -33,7 +33,7 @@ class RepoForm(forms.ModelForm):
         )
     )
     responsavel_uso = forms.CharField(
-        label="Responsável Uso",
+        label="Responsável pela Autorização de Uso",
         widget=forms.Select(
             attrs={
                 "placeholder": "", 
@@ -62,7 +62,6 @@ class RepoForm(forms.ModelForm):
             "responsavel_uso",
             "publico_alvo",
             "tipo_distribuidora",
-            "registro_versoes",
         ]
 
 
