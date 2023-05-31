@@ -254,3 +254,57 @@ class Tabelas(models.Model):
 
     def __str__(self):
         return self.nome_tabela
+
+
+class Abas(models.Model):
+    nome = models.CharField(
+        verbose_name="Nome",
+        max_length=255,
+    )
+    descricao = models.CharField(
+        verbose_name="Descrição",
+        max_length=255,
+    )
+
+    class Meta:
+        verbose_name = 'Aba'
+        verbose_name_plural = 'Abas'
+
+    def __str__(self):
+        return self.nome
+
+
+class Querys(models.Model):
+    nome = models.CharField(
+        verbose_name="Nome",
+        max_length=255,
+    )
+    query = models.CharField(
+        verbose_name="Query",
+        max_length=255,
+    )
+    tempo = models.CharField(
+        verbose_name="Tempo",
+        max_length=255,
+        null=True,
+        blank=True
+    )
+    linhas = models.CharField(
+        verbose_name="Linhas",
+        max_length=255,
+        null=True,
+        blank=True
+    )
+    colunas = models.CharField(
+        verbose_name="Colunas",
+        max_length=255,
+        null=True,
+        blank=True
+    )
+
+    class Meta:
+        verbose_name = 'Query'
+        verbose_name_plural = 'Querys'
+
+    def __str__(self):
+        return self.nome
