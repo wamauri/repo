@@ -55,9 +55,15 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="{% url "index" %}">
                     <i class="fas fa-fw far fa-grip-horizontal"></i>
                     <span>Home</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link collapsed" href="{% url "repos" %}">
+                    <i class="fas fa-fw far fa-list-ul"></i>
+                    <span>Repos</span>
                 </a>
             </li>
 

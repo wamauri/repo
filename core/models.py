@@ -124,6 +124,33 @@ class Responsavel(models.Model):
         return self.nome
 
 
+class RegistroDeVersoes(models.Model):
+    versao = models.IntegerField(
+        verbose_name="Versão",
+    )
+    responsavel = models.ForeignKey(
+        to=Responsavel,
+        on_delete=models.CASCADE,
+        verbose_name="Responsavel",
+        related_name="registro_de_versoes"
+    )
+    ticket = models.CharField(
+        verbose_name="Ticket",
+        max_length=255
+    )
+    comentario = models.CharField(
+        verbose_name="Comentário",
+        max_length=255
+    )
+
+    class Meta:
+        verbose_name = 'Registro de Versão'
+        verbose_name_plural = 'Registro de Versões'
+
+    def __str__(self):
+        return self.ticket
+
+
 class Repo(models.Model):
     tipo_entidade = models.ForeignKey(
         to=TipoEntidade,
@@ -167,6 +194,10 @@ class Repo(models.Model):
         verbose_name="Tipo Distribuidora",
         related_name="repo"
     )
+    registro_versoes = models.ManyToManyField(
+        verbose_name="Registro de Versões",
+        to=RegistroDeVersoes
+    )
 
     class Meta:
         verbose_name = 'Repo'
@@ -174,33 +205,6 @@ class Repo(models.Model):
 
     def __str__(self):
         return self.nome
-
-
-class RegistroDeVersoes(models.Model):
-    versao = models.IntegerField(
-        verbose_name="Versão",
-    )
-    responsavel = models.ForeignKey(
-        to=Responsavel,
-        on_delete=models.CASCADE,
-        verbose_name="Responsavel",
-        related_name="registro_de_versoes"
-    )
-    ticket = models.CharField(
-        verbose_name="Ticket",
-        max_length=255
-    )
-    comentario = models.CharField(
-        verbose_name="Comentário",
-        max_length=255
-    )
-
-    class Meta:
-        verbose_name = 'Registro de Versão'
-        verbose_name_plural = 'Registro de Versões'
-
-    def __str__(self):
-        return self.ticket
 
 
 class LGPD(models.Model):

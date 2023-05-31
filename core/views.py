@@ -4,6 +4,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
+from . import models
+from . import forms
+
 
 def login_view(request):
     template_name = 'user/loginRegister.html'
@@ -42,3 +45,30 @@ def index(request):
     template_name = 'core/index.html'
 
     return render(request, template_name)
+
+
+def repos(request):
+    form = forms.RepoForm(request.POST or None)
+    repos = models.Repo.objects.all()
+    context = {}
+    user = request.user
+
+    if request.method == "POST":
+
+        if form.is_valid():
+            form.save()
+
+            return redirect("core:repos")
+
+    else:
+        form = forms.RepoForm(request.POST or None)
+    
+    context["form"] = form
+    context["repos"] = repos
+    context["user"] = user
+
+    return render(
+        request=request,
+        template_name="core/repos.html",
+        context=context
+    )
