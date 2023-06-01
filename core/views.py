@@ -50,8 +50,16 @@ def index(request):
 def repos(request):
     form = forms.RepoForm(request.POST or None)
     registro_versoes_form = forms.RegistroDeVersoesForm(request.POST or None)
+    lgpd_form = forms.LGPDForm(request.POST or None)
+    tabelas_form = forms.TabelasForm(request.POST or None)
+    abas_form = forms.AbasForm(request.POST or None)
+    query_form = forms.QuerysForm(request.POST or None)
     repos = models.Repo.objects.all()
     registro_versoes = models.RegistroDeVersoes.objects.all()
+    lgpds = models.LGPD.objects.all()
+    tabelas = models.Tabelas.objects.all()
+    abas = models.Abas.objects.all()
+    querys = models.Querys.objects.all()
     context = {}
     user = request.user
 
@@ -69,11 +77,24 @@ def repos(request):
 
     else:
         form = forms.RepoForm(request.POST or None)
+        registro_versoes_form = forms.RegistroDeVersoesForm(request.POST or None)
+        lgpd_form = forms.LGPDForm(request.POST or None)
+        tabelas_form = forms.TabelasForm(request.POST or None)
+        abas_form = forms.AbasForm(request.POST or None)
+        query_form = forms.QuerysForm(request.POST or None)
     
     context["form"] = form
     context["registro_versoes_form"] = registro_versoes_form
     context["registro_versoes"] = registro_versoes
+    context["lgpd_form"] = lgpd_form
+    context["tabelas_form"] = tabelas_form
+    context["abas_form"] = abas_form
+    context["query_form"] = query_form
     context["repos"] = repos
+    context["lgpds"] = lgpds
+    context["tabelas"] = tabelas
+    context["abas"] = abas
+    context["querys"] = querys
     context["user"] = user
 
     return render(
