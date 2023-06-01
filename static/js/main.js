@@ -47,7 +47,7 @@ $("#createRepoForm").on("submit", function(e) {
                                     <i class="fas fa-pen-square"></i>
                                 </a>
                             </div>
-                            <div class="mr-2">
+                            <div class="">
                                 <a class="btn btn-outline-danger btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Deletar">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
@@ -94,7 +94,7 @@ $("#createRegistroVersoesForm").on("submit", function(e) {
                                     <i class="fas fa-pen-square"></i>
                                 </a>
                             </div>
-                            <div class="mr-2">
+                            <div class="">
                                 <a class="btn btn-outline-danger btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Deletar">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
@@ -139,7 +139,7 @@ $("#createLGPDForm").on("submit", function(e) {
                                     <i class="fas fa-pen-square"></i>
                                 </a>
                             </div>
-                            <div class="mr-2">
+                            <div class="">
                                 <a class="btn btn-outline-danger btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Deletar">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
@@ -183,7 +183,7 @@ $("#createTabelasForm").on("submit", function(e) {
                                     <i class="fas fa-pen-square"></i>
                                 </a>
                             </div>
-                            <div class="mr-2">
+                            <div class="">
                                 <a class="btn btn-outline-danger btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Deletar">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
@@ -227,7 +227,7 @@ $("#createAbasForm").on("submit", function(e) {
                                     <i class="fas fa-pen-square"></i>
                                 </a>
                             </div>
-                            <div class="mr-2">
+                            <div class="">
                                 <a class="btn btn-outline-danger btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Deletar">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
@@ -263,7 +263,7 @@ $("#createQuerysForm").on("submit", function(e) {
             $("#id_querys").append(`
                 <tr class="text-dark font-weight-bold">
                     <td class="text-xs align-middle text-nowrap">${querys["nome"]}</td>
-                    <td class="text-xs align-middle text-nowrap">${querys["query"]}</td>
+                    <td class="text-xs align-middle text-nowrap text-break w-50">${querys["query"]}</td>
                     <td class="text-xs align-middle text-nowrap">${querys["tempo"]}</td>
                     <td class="text-xs align-middle text-nowrap">${querys["linhas"]}</td>
                     <td class="text-xs align-middle text-nowrap">${querys["colunas"]}</td>
@@ -274,7 +274,7 @@ $("#createQuerysForm").on("submit", function(e) {
                                     <i class="fas fa-pen-square"></i>
                                 </a>
                             </div>
-                            <div class="mr-2">
+                            <div class="">
                                 <a class="btn btn-outline-danger btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Deletar">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>

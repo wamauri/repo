@@ -18,7 +18,7 @@
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4 mb-3">
                     <div class="row justify-content-between">
                         <div class="row">
-                            {% comment %} <div class="mt-1 ml-4 mr-2">
+                            <div class="mt-1 ml-4 mr-2">
                                 <label class="text-black font-weight-bold" for="rowLimit">Show</label>
                             </div>
                             <div>
@@ -28,7 +28,7 @@
                                     <option value="50">50</option>
                                     <option value="100">100</option>
                                 </select> 
-                            </div> {% endcomment %}
+                            </div>
                         </div>
                         <div id="dataTable_filter" class="row dataTables_filter mr-3">
                             <div class="ml-3 mt-1 mr-2">
@@ -45,7 +45,7 @@
                         <tr>
                             <th>Nome</th>
                             <th>Descrição</th>
-                            <th>Ações</th>
+                            <th class="d-flex justify-content-center">Ações</th>
                         </tr>
                     </thead>
                     <tbody id="id_abas">
@@ -60,7 +60,7 @@
                                                 <i class="fas fa-pen-square"></i>
                                             </a>
                                         </div>
-                                        <div class="mr-2">
+                                        <div class="">
                                             <a class="btn btn-outline-danger btn-sm" href="#" data-toggle="tooltip" data-placement="top" title="Deletar">
                                                 <i class="fas fa-trash-alt"></i>
                                             </a>
