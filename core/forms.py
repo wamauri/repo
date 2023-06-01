@@ -34,7 +34,7 @@ class RepoForm(forms.ModelForm):
     )
     responsavel_uso = forms.CharField(
         label="Responsável pela Autorização de Uso",
-        widget=forms.Select(
+        widget=forms.TextInput(
             attrs={
                 "placeholder": "", 
                 "autocomplete": "off",
@@ -87,10 +87,12 @@ class RegistroDeVersoesForm(forms.ModelForm):
     )
     comentario = forms.CharField(
         label="Comentário",
-        widget=forms.TextInput(
+        widget=forms.Textarea(
             attrs={
                 "placeholder": "", 
                 "autocomplete": "off",
+                "cols": 80,
+                "rows": 3,
             }
         )
     )
@@ -109,15 +111,6 @@ class LGPDForm(forms.ModelForm):
 
     nome_coluna = forms.CharField(
         label="Nome Coluna",
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "", 
-                "autocomplete": "off",
-            }
-        )
-    )
-    conteudo_anonimizado = forms.CharField(
-        label="Conteúdo Anonimizado",
         widget=forms.TextInput(
             attrs={
                 "placeholder": "", 
@@ -155,15 +148,6 @@ class TabelasForm(forms.ModelForm):
             }
         )
     )
-    origem_dados = forms.CharField(
-        label="Origem Dados",
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "", 
-                "autocomplete": "off",
-            }
-        )
-    )
 
     class Meta:
         model = models.Tabelas
@@ -186,10 +170,12 @@ class AbasForm(forms.ModelForm):
     )
     descricao = forms.CharField(
         label="Descrição",
-        widget=forms.TextInput(
+        widget=forms.Textarea(
             attrs={
                 "placeholder": "", 
                 "autocomplete": "off",
+                "cols": 80,
+                "rows": 3,
             }
         )
     )

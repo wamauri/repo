@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800 text-uppercase">Registro de Versões <i class="fas fa-list-ul fa-sm text-success"></i></h1>
-        <a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"
+        <a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm disabled" id="id_registro_versoes_button"
         data-toggle="collapse" href="#collapseRegistroVersoes" role="button" aria-expanded="false" aria-controls="collapseRegistroVersoes">
             <i aria-hidden="true" class="fa fa-plus-square fa-sm mr-2"></i>
             Novo Registro de Versões
@@ -50,7 +50,7 @@
                             <th>Ações</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="id_registro_versoes">
                         {% for registro_versao in registro_versoes %}
                             <tr class="text-dark font-weight-bold">
                                 <td class="text-xs align-middle text-nowrap">{{ registro_versao.versao }}</td>
@@ -81,7 +81,7 @@
 </div>
 <div class="collapse" id="collapseRegistroVersoes">
     <div class="container-fluid">
-        <form method="post" id="createOrcamentoForm" class="">
+        <form method="post" id="createRegistroVersoesForm" class="">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <div class="mt-2">
                     <h1 class="h3 mb-0 text-gray-800">Novo Registro de Versões <i class="fas fa-plus-circle fa-sm text-success"></i></h1>

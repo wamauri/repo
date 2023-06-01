@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800 text-uppercase">Tabelas <i class="fas fa-list-ul fa-sm text-success"></i></h1>
-        <a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"
+        <a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm disabled" id="id_tabela_button"
         data-toggle="collapse" href="#collapseTabelas" role="button" aria-expanded="false" aria-controls="collapseTabelas">
             <i aria-hidden="true" class="fa fa-plus-square fa-sm mr-2"></i>
             Nova Tabela
@@ -48,7 +48,7 @@
                             <th>Ações</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="id_tabelas">
                         {% for tabela in tabelas %}
                             <tr class="text-dark font-weight-bold">
                                 <td class="text-xs align-middle text-nowrap">{{ tabela.nome_tabela }}</td>
@@ -77,7 +77,7 @@
 </div>
 <div class="collapse" id="collapseTabelas">
     <div class="container-fluid">
-        <form method="post" id="createOrcamentoForm" class="">
+        <form method="post" id="createTabelasForm" class="">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <div class="mt-2">
                     <h1 class="h3 mb-0 text-gray-800">Nova Tabela <i class="fas fa-plus-circle fa-sm text-success"></i></h1>

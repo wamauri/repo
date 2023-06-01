@@ -212,8 +212,8 @@ class RegistroDeVersoes(models.Model):
 
 class LGPD(models.Model):
     ANONIMIZADO = (
-        ("Sim", "Sim"),
-        ("Não", "Não"),
+        ("S", "S"),
+        ("N", "N"),
     )
     nome_coluna = models.CharField(
         verbose_name="Nome Coluna",

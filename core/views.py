@@ -1,8 +1,13 @@
+import json
+from http import HTTPStatus
+
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.forms.models import model_to_dict
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect, get_object_or_404
 
 from . import models
 from . import forms
@@ -61,19 +66,28 @@ def repos(request):
     abas = models.Abas.objects.all()
     querys = models.Querys.objects.all()
     context = {}
+    data = {}
     user = request.user
 
     if request.method == "POST":
 
         if form.is_valid():
-            form.save()
+            instance = form.save(commit=False)
+            instance.save()
+            obj = get_object_or_404(models.Repo, pk=instance.id)
+            obj = model_to_dict(obj)
+            obj["user_id"] = user.id
+            data = json.dumps(
+                obj=obj,
+                indent=4,
+                sort_keys=True
+            )
 
-            return redirect("core:repos")
-
-    elif registro_versoes_form.is_valid():
-            registro_versoes_form.save()
-
-            return redirect("core:repos")
+            return JsonResponse(
+                data=data,
+                safe=False,
+                status=HTTPStatus.CREATED
+            )
 
     else:
         form = forms.RepoForm(request.POST or None)
@@ -102,3 +116,139 @@ def repos(request):
         template_name="core/repos.html",
         context=context
     )
+
+
+def registro_versoes_create(request):
+    form = forms.RegistroDeVersoesForm(request.POST or None)
+    repo = models.Repo.objects.last()
+    data = {}
+
+    if request.method == "POST":
+
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.id_repo = repo
+            instance.save()
+            obj = get_object_or_404(models.RegistroDeVersoes, pk=instance.id)
+            obj = model_to_dict(obj)
+            obj["responsavel"] = models.Responsavel.objects.get(id=obj["responsavel"])
+            nome = obj["responsavel"].codigo +' '+ obj["responsavel"].nome
+            obj["responsavel"] = nome
+            data = json.dumps(
+                obj=obj,
+                indent=4,
+                sort_keys=True
+            )
+
+            return JsonResponse(
+                data=data,
+                safe=False,
+                status=HTTPStatus.CREATED
+            )
+
+
+def lgpd_create(request):
+    form = forms.LGPDForm(request.POST or None)
+    repo = models.Repo.objects.last()
+    data = {}
+
+    if request.method == "POST":
+
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.id_repo = repo
+            instance.save()
+            obj = get_object_or_404(models.LGPD, pk=instance.id)
+            obj = model_to_dict(obj)
+            data = json.dumps(
+                obj=obj,
+                indent=4,
+                sort_keys=True
+            )
+
+            return JsonResponse(
+                data=data,
+                safe=False,
+                status=HTTPStatus.CREATED
+            )
+
+
+def tabelas_create(request):
+    form = forms.TabelasForm(request.POST or None)
+    repo = models.Repo.objects.last()
+    data = {}
+
+    if request.method == "POST":
+
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.id_repo = repo
+            instance.save()
+            obj = get_object_or_404(models.Tabelas, pk=instance.id)
+            obj = model_to_dict(obj)
+            obj["origem_dados"] = models.TipoOrigemDados.objects.get(id=obj["origem_dados"])
+            nome = obj["origem_dados"].nome
+            obj["origem_dados"] = nome
+            data = json.dumps(
+                obj=obj,
+                indent=4,
+                sort_keys=True
+            )
+
+            return JsonResponse(
+                data=data,
+                safe=False,
+                status=HTTPStatus.CREATED
+            )
+
+
+def abas_create(request):
+    form = forms.AbasForm(request.POST or None)
+    repo = models.Repo.objects.last()
+    data = {}
+
+    if request.method == "POST":
+
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.id_repo = repo
+            instance.save()
+            obj = get_object_or_404(models.Abas, pk=instance.id)
+            obj = model_to_dict(obj)
+            data = json.dumps(
+                obj=obj,
+                indent=4,
+                sort_keys=True
+            )
+
+            return JsonResponse(
+                data=data,
+                safe=False,
+                status=HTTPStatus.CREATED
+            )
+
+
+def querys_create(request):
+    form = forms.QuerysForm(request.POST or None)
+    repo = models.Repo.objects.last()
+    data = {}
+
+    if request.method == "POST":
+
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.id_repo = repo
+            instance.save()
+            obj = get_object_or_404(models.Querys, pk=instance.id)
+            obj = model_to_dict(obj)
+            data = json.dumps(
+                obj=obj,
+                indent=4,
+                sort_keys=True
+            )
+
+            return JsonResponse(
+                data=data,
+                safe=False,
+                status=HTTPStatus.CREATED
+            )
