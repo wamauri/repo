@@ -38,7 +38,7 @@ $("#createRepoForm").on("submit", function(e) {
                                 </a>
                             </div>
                             <div class="mr-1">
-                                <a class="btn btn-outline-warning btn-sm" target="_blank" href="http://localhost:8501/?x=0&y=${repos["id"]}" data-toggle="tooltip" data-placement="top" title="Abrir Relatório">
+                                <a class="btn btn-outline-secondary btn-sm" target="_blank" href="http://localhost:8501/?x=0&y=${repos["id"]}" data-toggle="tooltip" data-placement="top" title="Abrir Relatório">
                                     <i class="fas fa-share"></i>
                                 </a>
                             </div>

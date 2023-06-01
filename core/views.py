@@ -60,11 +60,12 @@ def repos(request):
     abas_form = forms.AbasForm(request.POST or None)
     query_form = forms.QuerysForm(request.POST or None)
     repos = models.Repo.objects.all()
-    registro_versoes = models.RegistroDeVersoes.objects.all()
-    lgpds = models.LGPD.objects.all()
-    tabelas = models.Tabelas.objects.all()
-    abas = models.Abas.objects.all()
-    querys = models.Querys.objects.all()
+    repo = models.Repo.objects.last()
+    registro_versoes = models.RegistroDeVersoes.objects.filter(id_repo=repo.id + 1)
+    lgpds = models.LGPD.objects.filter(id_repo=repo.id + 1)
+    tabelas = models.Tabelas.objects.filter(id_repo=repo.id + 1)
+    abas = models.Abas.objects.filter(id_repo=repo.id + 1)
+    querys = models.Querys.objects.filter(id_repo=repo.id + 1)
     context = {}
     data = {}
     user = request.user
